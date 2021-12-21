@@ -8,7 +8,6 @@
 typedef double el_type;
 typedef std::vector<std::complex<el_type> > t_complex_vector;
 const double Pi = 3.14159265359;
-const double m_exp = 2.71828182846;
 
 template <typename T>
 inline T m_reverse(T a, int bit_len)
@@ -171,6 +170,35 @@ void m_2D_fft_reversed(el_type *src_real, el_type *src_imag, el_type *res_real, 
 	}
 }
 
+void normalize_data(el_type* src, size_t size)// NEEDS FIX
+{
+	el_type* x_min = std::min_element(src, src + size - 1);
+	el_type* x_max = std::max_element(src, src + size - 1);
+	el_type dif = *x_max - *x_min;
+	for (size_t i = 0; i < size; ++i)
+	{
+		src[i] = (src[i] - *x_min) / dif * 255;
+	}
+}
+
+void shift_data(el_type* src, size_t size)
+{
+	for (size_t i = 0; i < size; ++i)
+	{
+		for (size_t j = 0; j < size / 2; ++j)
+		{
+			std::swap(src[i*size + j], src[i*size + size / 2 + j]);
+		}
+	}
+	for (size_t i = 0; i < size; ++i)
+	{
+		for (size_t j = 0; j < size / 2; ++j)
+		{
+			std::swap(src[i + j * size], src[i + (size / 2 + j) * size]);
+		}
+	}
+}
+
 void apply_low_pass_filter(el_type* real, el_type* imag, size_t size, size_t radius_in_pixels)
 {
 	size_t center = size / 2;
@@ -178,7 +206,7 @@ void apply_low_pass_filter(el_type* real, el_type* imag, size_t size, size_t rad
 	{
 		size_t x = i % size;
 		size_t y = i / size;
-		if ((x - center)*(x - center) + (y - center)*(y - center) <= radius_in_pixels * radius_in_pixels)
+		if ((x - center)*(x - center) + (y - center)*(y - center) > radius_in_pixels*radius_in_pixels)
 		{
 			real[i] = 0;
 			imag[i] = 0;
@@ -188,8 +216,8 @@ void apply_low_pass_filter(el_type* real, el_type* imag, size_t size, size_t rad
 
 int main(int argc, char* argv[])
 {
-	cimg_library::CImg<unsigned char> image("image dir here"), two_dim_fft_res(image.width(), image.height(), 1, 3, 0), two_dim_fft_res_cut(image.width(), image.height(), 1, 3, 0),
-		inverse_two_dim_fft(image.width(), image.height(), 1, 3, 0);
+	cimg_library::CImg<unsigned char> image("PATH HERE"), two_dim_fft_res(image.width(), image.height(), 1, image.spectrum(), 0), two_dim_fft_res_cut(image.width(), image.height(), 1, image.spectrum(), 0),
+		inverse_two_dim_fft(image.width(), image.height(), 1, image.spectrum(), 0);
 	std::vector<el_type*> channels(image.spectrum());
 	std::vector<el_type*> channels_imag(image.spectrum());
 	std::vector<el_type*> magnitudes(image.spectrum());
@@ -208,21 +236,30 @@ int main(int argc, char* argv[])
 		for (size_t j = 0; j < image.width() * image.height(); ++j)
 		{
 			magnitudes[i][j] = sqrt(channels[i][j] * channels[i][j] + channels_imag[i][j] * channels_imag[i][j]);
+		}
+		normalize_data(magnitudes[i], image.width());
+		shift_data(magnitudes[i], image.width());
+		for (size_t j = 0; j < image.width() * image.height(); ++j)
+		{
 			two_dim_fft_res(j % image.width(), j / image.height(), 0, i) = magnitudes[i][j];
 		}
+		shift_data(channels[i], image.width());
+		shift_data(channels_imag[i], image.width());
 		apply_low_pass_filter(channels[i], channels_imag[i], image.width(), 300);
 		for (size_t j = 0; j < image.width() * image.height(); ++j)
 		{
 			magnitudes[i][j] = sqrt(channels[i][j] * channels[i][j] + channels_imag[i][j] * channels_imag[i][j]);
 			two_dim_fft_res_cut(j % image.width(), j / image.height(), 0, i) = magnitudes[i][j];
 		}
+		shift_data(channels[i], image.width());
+		shift_data(channels_imag[i], image.width());
 		m_2D_fft_reversed(channels[i], channels_imag[i], channels[i], channels_imag[i], image.height(), image.width(), 1);
 		for (size_t j = 0; j < image.width() * image.height(); ++j)
 		{
 			inverse_two_dim_fft(j % image.width(), j / image.height(), 0, i) = channels[i][j];
 		}
 	}
-	cimg_library::CImgDisplay original_display(image, "original"), two_dim_fft_display(two_dim_fft_res, "2DFFT"), two_dim_fft_display_cut_display(two_dim_fft_res_cut, "High pass"), inverse_two_dim_fft_display(inverse_two_dim_fft, "Reversed");
+	cimg_library::CImgDisplay original_display(image, "original"), two_dim_fft_display(two_dim_fft_res, "2DFFT"), two_dim_fft_display_cut_display(two_dim_fft_res_cut, "Low pass"), inverse_two_dim_fft_display(inverse_two_dim_fft, "Reversed");
 	getchar();
-	return 1;
+	return 0;
 }
