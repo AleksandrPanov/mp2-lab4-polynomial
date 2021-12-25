@@ -1,0 +1,282 @@
+.video
+  padding-top: 58px
+  padding-bottom: 75px
+  &__wrapper
+    position: relative
+    max-height: 735px
+    overflow-y: hidden
+    video.video_current
+      width: 100%
+      transform: translateY(-20px)
+  &__pause_big
+    position: absolute
+    cursor: pointer
+    background: inherit
+    border: none
+    z-index: 1
+    width: 230px
+    height: 230px
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -60%)
+    &-inner
+      pointer-events: none
+      width: 100%
+      height: 100%
+      background: url('assets/svg/video/bigPause.svg')
+      background-size: 100%
+  &__title
+    flex-shrink: 0
+    display: inline-block
+    &:after
+      display: none
+  &__info
+    display: flex
+    align-items: center
+    margin-bottom: 60px
+  &__desc
+    padding-left: 115px
+    font-weight: 300
+    font-size: 22px
+    line-height: 38px
+  &__controls
+    position: relative
+    z-index: 5
+    display: flex
+    align-items: center
+    padding: 0 16px
+    height: 85px
+    background-color: $bg-dark
+    margin-top: -164px
+    &:hover .video__controls-item:after
+      opacity: 0.1
+    &-item
+      display: block
+      background-color: inherit
+      border: none
+      cursor: pointer
+      width: 80px
+    div + button
+      margin-left: 50px
+  &__progress
+    width: 100%
+    position: relative
+    display: flex
+    align-items: center
+    margin-left: 50px
+    &:hover
+      input[type="range"]
+        background-color: darken(#c4c4c4, 10)
+      .progress-fill
+        background-color: darken($red, 2)
+  .progress-fill
+    cursor: pointer
+    position: absolute
+    width: 50%
+    height: 8px
+    top: 0
+    background-color: $red
+  input[type="range"]
+    cursor: pointer
+    -webkit-appearance: none
+    width: 100%
+    margin-top: 0
+    background-color: #c4c4c4
+    height: 8px
+    outline: none
+    &::-webkit-slider-thumb
+      -webkit-appearance: none
+      position: relative
+      z-index: 5
+      width: 15px
+      height: 15px
+      border-radius: 50%
+      background-color: $light
+      cursor: pointer
+      outline: none
+      transition: all 0.2s
+      &:hover
+        width: 18px
+        height: 18px
+      &:active
+        width: 22px
+        height: 22px
+  &__changevolume
+    max-width: 150px
+  &__slider
+    margin-top: 40px  
+    &-controls
+      margin-top: 40px
+      display: flex
+      justify-content: center
+      align-items: center
+    &-arrow
+      background-color: inherit
+      border: none
+      cursor: pointer
+      i
+        color: #999999
+    .swiper-pagination
+      position: static
+      margin: 0 20px
+      width: auto
+      display: flex
+      .swiper-pagination-bullet
+        width: 12px
+        height: 12px
+        border-radius: 50%
+        background-color: #999999
+        &+ .swiper-pagination-bullet
+          margin-left: 20px
+      .current
+        background-color: #333333
+  &__slide
+    max-width: 452px
+    height: 254px
+    iframe
+      border: none
+      width: 100%
+      height: 100%
+
+@media (max-width: 1439.98px)
+  .video
+    padding-top: 70px
+    padding-bottom: 52px
+    &__wrapper
+      max-height: 504px
+    &__info
+      margin-bottom: 50px
+    &__desc
+      display: none
+    &__controls
+      height: 60px
+      margin-top: -113px
+      padding: 0 40px
+      div + button
+        margin-left: 30px
+    &__progress
+      margin-left: 30px
+    &__pause_big
+      width: 152px
+      height: 152px
+    &__pause
+      width: 23px
+      padding: 0
+      img
+        max-height: 30px
+    .progress-fill
+      height: 5px
+    input[type="range"]
+      height: 5px
+      &::-webkit-slider-thumb
+        width: 13px
+        height: 13px
+    &__volume
+      width: 26px
+      padding: 0
+      img
+        max-width: 26px
+    &__fullscreen
+      width: 26px
+      padding: 0
+      img
+        max-width: 26px
+    &__slide
+      max-width: 300px
+      height: 170px
+
+@media (max-width: 1024px)
+  .video
+    padding-top: 45px
+    padding-bottom: 75px
+    &__info
+      margin-bottom: 30px
+    &__pause_big 
+      width: 80px
+      height: 80px
+    &__wrapper
+      height: 386px
+    &__controls
+      position: relative
+      height: 53px
+      margin-top: -81px
+      padding: 0 30px
+    &__pause
+      width: 25px
+      img
+        width: 100%
+    &__time
+      position: absolute
+      left: -30px
+      top: -5px
+    &__changevolume
+      max-width: 100% 
+    &__slider
+      margin-top: 20px
+      &-controls
+        margin-top: 18px
+      &-pagination
+        &_elem
+          width: 10px
+          height: 10px
+    &__slide
+      max-width: none
+      height: 199px
+
+@media (max-width: 768px)
+  .video
+    padding-bottom: 37px
+    &__wrapper
+      height: 226px
+    &__pause_big
+      width: 50px
+      height: 50px
+      margin-top: -20px  
+    &__info
+      margin-bottom: 20px
+    &__controls
+      padding: 0 20px
+      margin-top: -43px
+    .progress-fill
+      height: 4px
+    input[type="range"]
+      height: 4px
+      &::-webkit-slider-thumb
+        width: 10px
+        height: 10px
+    &__time
+      position: absolute
+      top: -4px
+    &__volume
+      img
+        max-width: 18px
+    &__fullscreen
+      img
+        max-width: 18px
+    &__slider
+      margin-top: 40px
+      &-controls
+        margin-top: 33px
+      &-pagination
+        &_elem
+          width: 8px
+          height: 8px
+    &__slide
+      height: 101px
+
+@media (max-width: 420px)
+  .video
+    &__wrapper
+      height: auto
+    &__controls
+      height: 33px
+      margin-top: -25px
+    &__slider
+      margin-top: 20px
+    &__slide
+      height: auto
+      max-height: 100px
+        
+
+
+

@@ -1,0 +1,172 @@
+.footer
+  padding-top: 84px
+  background-color: $bg-dark
+  overflow-y: hidden
+  color: $light
+  &__top
+    padding: 75px 0 30px 0
+    padding-top: 0
+    border-bottom: 3px solid #666666
+    &-inner
+      display: flex
+  &__logo
+    display: flex
+    align-items: flex-start
+    justify-content: space-between
+    letter-spacing: 5px
+    &-text
+      margin-left: 25px
+      font-family: 'Forum', cursive
+      font-size: 28px
+      color: $light
+      text-transform: uppercase
+  &__nav
+    flex-grow: 1
+  &__list
+    list-style: none
+    display: flex
+    margin: 0
+    flex-direction: column
+    flex-wrap: wrap
+    max-height: 160px
+    margin-left: 145px
+    max-width: 360px
+    padding-left: 0
+    align-content: space-between
+    justify-content: start
+    &-item
+      a
+        display: block
+        font-size: 22px
+        color: $light
+        text-decoration: none
+        font-weight: 100
+        letter-spacing: 2px
+        transition: all 0.2s
+        margin-bottom: 25px
+        &:hover
+          color: $gold
+        &:active
+          color: #7e6c51
+  &__social
+    align-self: flex-end
+    &-list
+      display: flex
+      margin: 0
+      margin-bottom: 30px
+      padding-left: 0
+      list-style: none
+      margin-bottom: 25px
+    &-link
+      display: block
+      width: 48px
+      height: 48px
+      border-radius: 50%
+      border: 1px solid $light
+      margin-left: 25px
+      display: flex
+      align-items: center
+      justify-content: center
+      text-decoration: none
+      transition: all 0.2s
+      i
+        font-size: 20px
+        color: $light
+        transition: all 0.2s
+      &:hover
+        border: 1px solid $gold
+        i
+          color: $gold
+  &__bottom
+    padding: 48px 0
+    font-size: 22px
+    font-weight: 100
+    letter-spacing: 2px
+    &-inner 
+      display: flex
+      align-items: center
+      justify-content: space-between
+      transition: all 0.2s
+  &__github
+    color: $light
+    text-decoration: none
+    &:hover
+      color: $gold 
+  &__rss
+    margin-left: 48px
+
+@media (max-width: 1439.98px)
+  .footer
+    padding-top: 60px
+    &__list
+      margin-top: 5px
+      margin-left: 42px
+      margin-right: 70px
+    &__top
+      padding-bottom: 23px
+    &__copy
+      width: 82px
+      display: flex
+      justify-content: space-between
+      align-items: center
+
+@media (max-width: 1024px)
+  .footer
+    padding-top: 50px
+    &__top
+      padding-bottom: 9px
+      &-inner
+        flex-wrap: wrap
+    &__list
+      margin-left: 100px
+      margin-right: 90px
+      &-item
+        a
+          font-size: 18px
+    &__social
+      width: 100%
+      margin-right: 90px
+      margin-top: 28px
+      display: flex
+      justify-content: flex-end
+    &__bottom
+      padding: 40px 0
+
+@media (max-width: 768px)
+  .footer
+    padding-top: 40px
+    &__logo
+      img 
+        max-width: 29px
+      &-text
+        margin-left: 20px
+        font-size: 16px
+    &__nav
+      margin-top: 40px
+      width: 100%
+      max-height: 100px
+    &__list
+      margin: 0
+      width: 100%
+      height: 100%
+      flex-wrap: wrap
+      flex-direction: column
+      justify-content: space-between
+      align-items: space-between
+      &-item
+        a
+          margin-bottom: 28px
+    &__social
+      margin: 0
+      margin-top: 10px
+      justify-content: center
+      &-item
+        a
+          margin-left: 0
+      &-item + &-item
+        a
+          margin-left: 5px
+    &__rss
+      display: none
+
+      

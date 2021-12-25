@@ -1,0 +1,72 @@
+.contacts
+  padding-bottom: 41px
+  &-inner
+    display: flex
+    margin-top: 84px
+    justify-content: space-between
+  &__info
+    &-title
+      font-size: 28px
+      font-weight: 700
+      margin-right: 250px
+      margin-bottom: 50px
+    &-item
+      margin-bottom: 25px
+      font-weight: 300
+      font-size: 22px
+      a
+        text-decoration: none
+        color: $bg-dark
+  &__img
+    margin-top: 26px
+
+@media (max-width: 1439.98px)
+  .contacts
+    padding-bottom: 65px
+    &-inner
+      margin-top: 70px
+    &__info
+      &-title
+        font-size: 24px
+        margin-right: 105px
+        margin-bottom: 30px
+      &-item
+        font-size: 20px
+        margin-bottom: 15px
+    &__img
+      max-width: 694px
+      img
+        width: 100%
+
+@media (max-width: 1024px)
+  .contacts
+    &-inner
+      flex-direction: column
+    &__info 
+      &-title
+        font-size: 20px
+        width: 155px
+        margin-top: 0
+        margin-bottom: 40px
+      &-item
+        font-size: 18px
+        letter-spacing: normal
+    &__img
+      max-width: 100%
+
+@media (max-width: 768px)
+  .contacts
+    padding-bottom: 37px
+    &__info
+      &-title
+        font-size: 16px
+        width: 124px
+      &-item
+        font-size: 16px
+    &__img
+      overflow: hidden
+      max-height: 248px
+      img
+        transform: translate(-28%, -28%)
+        width: 240%
+        height: 240%

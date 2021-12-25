@@ -1,0 +1,95 @@
+.visiting
+  &__items
+    margin-top: 24px
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    justify-content: space-between
+  &__item
+    margin-top: 75px
+    img
+      width: 100%
+    &:hover
+      .visiting__item-title:after
+        width: 100%
+    &-title
+      position: relative
+      margin-top: 25px
+      margin-bottom: 22px
+      font-family: 'Forum', cursive
+      font-size: 32px
+      letter-spacing: 5px
+      text-transform: uppercase
+      font-weight: 300
+      &:after
+        content: ''
+        position: absolute
+        transition: all 0.5s
+        bottom: -10px
+        left: 0
+        width: 300px
+        height: 2px
+        background-color: $red
+    &-degree
+      font-size: 22px
+      font-weight: 100
+    &-panorama
+      display: block
+      margin-top: 10px
+      font-weight: 100
+      font-size: 18px
+      text-decoration: none
+      color: $bg-dark
+
+@media (max-width: 1439.98px)
+  .visiting
+    padding-bottom: 55px
+    &__items
+      justify-content: center
+    &__items 
+      margin-top: 30px
+    &__item
+      margin-top: 58px
+      width: 330px
+      margin-left: 54px
+      margin-right: 54px
+      img
+        width: 100%
+      &-title
+        font-size: 28px
+        letter-spacing: 3px
+        &:after
+          width: 150px
+      &-degree
+        font-size: 20px
+      &-panorama
+        font-size: 16px    
+
+@media (max-width: 1024px)
+  .visiting 
+    padding-bottom: 87px
+    &__item
+      width: 280px
+      margin-left: 28px
+      margin-right: 28px
+      margin-top: 45px
+      margin-bottom: -8px
+      &-title
+        font-size: 22px
+        margin-top: 20px
+      &-degree
+        font-size: 18px
+      &-panorama
+        font-size: 16px
+
+@media (max-width: 768px)
+  .visiting
+    padding-bottom: 40px
+    &__item
+      margin-top: 37px
+      margin-bottom: 2px
+      &-title
+        font-size: 18px
+        letter-spacing: 5px
+      &-degree
+        font-size: 16px
