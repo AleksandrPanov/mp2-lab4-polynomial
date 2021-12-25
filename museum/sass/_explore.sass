@@ -1,0 +1,135 @@
+.explore
+  background-color: $bg-dark
+  padding-bottom: 75px
+  &-inner 
+    display: flex
+  &__info 
+    margin-right: 60px
+  &__title
+    margin-top: 0
+    margin-bottom: 108px
+    color: $light 
+  &__desc
+    margin-bottom: 25px
+    margin-right: 5px
+    color: $light
+    font-size: 22px
+    line-height: 38px
+    font-weight: 300
+    span
+      color: lighten($gold, 10)
+  &__img
+    margin-top: 12px
+    width: 720px
+    height: 700px
+    flex: none
+    position: relative
+    overflow-x: hidden
+    &-resize
+      position: absolute
+      width: auto
+      height: 100%
+      overflow: hidden
+      &_before
+        width: calc(50% + 4px)
+        overflow-x: hidden
+        z-index: 5
+        &:before 
+          content: ''
+          position: absolute
+          width: 8px
+          height: calc(50% - 16px)
+          background-color: $light
+          right: -4px
+          top: 0
+        &:after
+          content: ''
+          position: absolute
+          width: 8px
+          height: calc(50% - 20px)
+          background-color: $light
+          right: -4px
+          bottom: 0
+    &-drag
+      position: absolute
+      cursor: ew-resize
+      -webkit-appearance: none
+      top: 50%
+      left: -24px
+      transform: translateY(-50%)
+      width: calc(100% + 40px)
+      z-index: 6
+      background: transparent
+      &::-webkit-slider-thumb
+        -webkit-appearance: none
+        // z-index: 5
+        width: 40px
+        height: 40px
+        border-radius: 50%
+        background: transparent
+        border: 5px solid $light
+
+@media (max-width: 1439.98px)
+  .explore
+    padding-bottom: 60px
+    &-inner
+      display: block
+    &__info
+      margin-right: 0
+    &__title
+      margin-bottom: 90px
+    &__desc
+      font-size: 20px
+      margin-bottom: -20px
+      &:last-child
+        display: none
+    &__img
+      margin-top: 80px
+      margin-left: 50%
+      transform: translateX(-50%)
+
+@media (max-width: 1024px)
+  .explore
+    padding-bottom: 42px
+    &__title
+      margin-bottom: 0
+    &__desc
+      display: none
+    &__img 
+      margin-top: 77px
+
+@media (max-width: 768px)
+  .explore
+    padding-bottom: 40px
+    &__img
+      margin-top: 65px
+      width: 380px
+      height: 358px
+      img
+        width: 380px
+      &-drag
+        left: -13px
+        width: calc(100% + 20px)
+        &::-webkit-slider-thumb
+          width: 20px
+          height: 20px
+          border: 3px solid $light 
+      &-resize
+        &_before
+          width: calc(50% + 2px)
+          &:before
+            width: 4px
+            height: calc(50% - 8px)
+            right: -2px
+          &:after
+            width: 4px
+            height: calc(50% - 10px)
+            right: -2px
+
+@media (max-width: 420px)
+  .explore
+    &__img
+      width: 100%
+      &-resize
+        &_after
+          width: 100%

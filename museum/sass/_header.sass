@@ -1,0 +1,100 @@
+.header
+  padding: 44px 0
+  background-color: $bg-dark
+  &__inner
+    display: flex
+    align-items: center
+    justify-content: space-between
+  &__logo
+    display: flex
+    align-items: flex-start
+    justify-content: space-between
+    letter-spacing: 5px
+    &-text
+      margin-left: 25px
+      font-family: 'Forum', cursive
+      font-size: 28px
+      color: $light
+      text-transform: uppercase
+  &__list
+    list-style: none
+    display: flex
+    align-items: center
+    &-item
+      margin-left: 56px
+      a
+        font-size: 22px
+        color: $light
+        text-decoration: none
+        font-weight: 100
+        letter-spacing: 2px
+        transition: all 0.2s
+        &:hover
+          color: $gold
+        &:active
+          color: #7e6c51
+  &__burger
+    width: 32px
+    height: 18px
+    display: none
+    transition: all 0.2s
+    &-stick
+      position: relative
+      width: 100%
+      height: 2px
+      background-color: $light
+      margin-top: 8px
+      transition: all 0.2s
+      &:before, &:after
+        content: ''
+        position: absolute
+        width: 100%
+        height: 2px
+        background-color: $light
+        left: 0
+        transition: all 0.2s
+      &:before
+        bottom: 7px
+      &:after
+        top: 7px
+    &_active
+      width: 25px
+      height: 25px
+      .header__burger-stick
+        background-color: inherit
+        transition: all 0.2s
+        &:before 
+          width: 35.3px
+          left: -5px
+          top: 5px
+          transform: rotate(45deg)
+        &:after 
+          width: 35.3px
+          left: -5px
+          top: 6px
+          transform: rotate(135deg)
+
+
+@media (max-width: 1439.98px)
+  .header
+    &__nav
+      display: none
+    &__burger
+      display: block
+
+@media (max-width: 1024px)
+  .header
+    padding: 35px 0
+
+@media (max-width: 768px)
+  .header
+    &__logo
+      img
+        width: 30px
+      &-text
+        margin-left: 25px
+        font-size: 16px
+        letter-spacing: 5px
+
+      
+
